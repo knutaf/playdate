@@ -6,7 +6,7 @@ exclude = ["cargo/tests/crates/**/*"]
 
 
 [workspace.package]
-edition = "2021"
+edition = "2024"
 license = "MIT OR Apache-2.0"
 authors = ["Alex Koz <a@koz.email>"]
 homepage = "https://github.com/boozook/playdate"

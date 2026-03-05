@@ -13,7 +13,7 @@ use rustify::rename::SharedRenamed;
 
 
 pub mod error;
-pub mod gen;
+pub mod r#gen;
 pub mod rustify {
 	pub mod rename;
 }
@@ -29,7 +29,7 @@ pub const SDK_VER_SUPPORTED: &str = ">=2.1.0, <3.0.0";
 pub enum Bindings {
 	Bindgen(Box<bindgen::Bindings>),
 	#[cfg(feature = "extra-codegen")]
-	Engaged(gen::Bindings),
+	Engaged(r#gen::Bindings),
 }
 
 
@@ -107,7 +107,7 @@ impl Generator {
 
 
 		#[cfg(feature = "extra-codegen")]
-		gen::engage(
+		r#gen::engage(
 		            &bindings,
 		            self.renamed,
 		            &self.features,
