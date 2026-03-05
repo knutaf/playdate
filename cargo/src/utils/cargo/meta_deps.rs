@@ -374,7 +374,7 @@ impl<'t> MetaDeps<'t> {
 	/// Groups of root-units by target.
 	///
 	/// Grouping: (package_id + cargo-target) => [rustc-target].
-	pub fn roots_by_compile_target(&self) -> BTreeMap<TargetKey, BTreeSet<cargo::core::compiler::CompileKind>> {
+	pub fn roots_by_compile_target(&self) -> BTreeMap<TargetKey<'_>, BTreeSet<cargo::core::compiler::CompileKind>> {
 		self.roots.iter().fold(BTreeMap::new(), |mut acc, root| {
 			                 let key = TargetKey::from(root);
 			                 acc.entry(key).or_default().insert(root.node().unit().platform);
@@ -556,7 +556,7 @@ impl PackageSource for CrateNode<'_> {
 	type Authors = [String];
 	type Metadata = MainMetadata<InternedString>;
 
-	fn name(&self) -> std::borrow::Cow<str> { self.node.package_id().name().as_str().into() }
+	fn name(&self) -> std::borrow::Cow<'_, str> { self.node.package_id().name().as_str().into() }
 
 	fn authors(&self) -> &Self::Authors {
 		self.node
@@ -566,7 +566,7 @@ impl PackageSource for CrateNode<'_> {
 		    .unwrap_or_default()
 	}
 
-	fn version(&self) -> std::borrow::Cow<str> {
+	fn version(&self) -> std::borrow::Cow<'_, str> {
 		self.node
 		    .meta
 		    .as_ref()
@@ -574,7 +574,7 @@ impl PackageSource for CrateNode<'_> {
 		    .unwrap_or_default()
 	}
 
-	fn description(&self) -> Option<std::borrow::Cow<str>> {
+	fn description(&self) -> Option<std::borrow::Cow<'_, str>> {
 		self.node
 		    .meta
 		    .as_ref()
@@ -594,7 +594,7 @@ impl PackageSource for CrateNode<'_> {
 
 	fn examples(&self) -> &[&str] { &self.examples }
 
-	fn manifest_path(&self) -> std::borrow::Cow<std::path::Path> {
+	fn manifest_path(&self) -> std::borrow::Cow<'_, std::path::Path> {
 		self.node
 		    .meta
 		    .as_ref()
