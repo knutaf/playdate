@@ -29,11 +29,11 @@ error-ctx = []    # errors with context (incomplete feature)
 
 bindgen-runtime = ["bindgen", "bindgen?/runtime"]  # runtime linking (dlopen)
 bindgen-static = ["bindgen", "bindgen?/static"]    # static linking to clang
-bindgen-logging = ["bindgen?/logging"]
-bindgen-pretty-please = ["bindgen?/pretty-please"] # TODO: remove formatting at all
-bindgen-which-rustfmt = ["bindgen?/which-rustfmt"]
+bindgen-logging = ["bindgen", "bindgen?/logging"]
+bindgen-pretty-please = ["bindgen", "bindgen?/pretty-please"] # TODO: remove formatting at all
+bindgen-which-rustfmt = ["bindgen", "bindgen?/which-rustfmt"]
 
-bindings-documentation = ["bindgen?/documentation"] # generate docs for bindings
+bindings-documentation = ["bindgen", "bindgen?/documentation"] # generate docs for bindings
 
 bindings-derive-default = []      # ask bindgen to derive `Default`
 bindings-derive-eq = []           # ask bindgen to derive `Eq`
