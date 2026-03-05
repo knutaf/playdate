@@ -140,7 +140,7 @@ fn extract_type_from_option(ty: &syn::Type) -> Option<&syn::Type> {
 fn apply(_key: &str, field: &mut syn::Field, fix: &Fix, _underlying: Option<Type>) {
 	match fix {
 		Fix::ReturnNever => {
-			if let Type::BareFn(ref mut ty) = &mut field.ty {
+			if let Type::BareFn(ty) = &mut field.ty {
 				ty.output =
 					syn::ReturnType::Type(
 					                      RArrow(ty.output.span()),

@@ -33,7 +33,7 @@ impl CargoJsonReader {
 	}
 
 
-	pub fn read(&mut self) -> Result<impl Iterator<Item = CargoMessage>> {
+	pub fn read(&mut self) -> Result<impl Iterator<Item = CargoMessage> + use<>> {
 		let is_json = |s: &String| {
 			if s.starts_with('{') {
 				true

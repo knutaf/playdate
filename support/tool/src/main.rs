@@ -77,9 +77,12 @@ async fn main() -> miette::Result<()> {
 	enable_tracing();
 	#[cfg(not(feature = "tracing"))]
 	{
+		let env_config = env_logger::Env::default();
+
 		#[cfg(debug_assertions)]
-		std::env::set_var("RUST_LOG", "trace,nusb=info");
-		env_logger::Builder::from_env(env_logger::Env::default()).format_indent(Some(3))
+		let env_config = env_config.default_filter_or("trace,nusb=info");
+
+		env_logger::Builder::from_env(env_config).format_indent(Some(3))
 		                                                         .format_module_path(false)
 		                                                         .format_target(true)
 		                                                         .format_timestamp(None)
