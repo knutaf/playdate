@@ -15,9 +15,9 @@ use std::str::FromStr;
 use clap::error::{ErrorKind, ContextKind, ContextValue};
 use clap::{Arg, ArgMatches, FromArgMatches};
 use cargo::core::{Workspace, VirtualManifest, WorkspaceConfig, WorkspaceRootConfig};
-use cargo::core::compiler::{CompileTarget, CompileKind};
+use cargo::core::compiler::{CompileTarget, CompileKind, CompileMode};
 use cargo::ops::CompileOptions;
-use cargo::util::command_prelude::{ArgMatchesExt, CompileMode, ProfileChecking};
+use cargo::util::command_prelude::{ArgMatchesExt, ProfileChecking};
 use cargo::util::GlobalContext as CargoConfig;
 use cargo::util::CargoResult;
 use clap_lex::SeekFrom;
@@ -160,7 +160,7 @@ pub fn initialize_from(args: impl IntoIterator<Item = impl Into<OsString> + AsRe
 			));
 			let fake_manifest = VirtualManifest::new(
 			                     Rc::default(),
-			                     Rc::new(toml_edit::ImDocument::parse("".to_owned()).expect("empty is valid TOML")),
+			                     Rc::new(toml::de::DeTable::parse("").expect("empty is valid TOML")),
 			                     Rc::default(),
 			                     Rc::default(),
 			                     Vec::new(),

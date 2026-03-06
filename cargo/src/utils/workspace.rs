@@ -3,11 +3,11 @@ use cargo::core::Package;
 use cargo::core::Target;
 use cargo::core::TargetKind;
 use cargo::core::compiler::CompileKind;
+use cargo::core::compiler::CompileMode;
 use cargo::core::compiler::CrateType;
 use cargo::core::compiler::FileType;
 use cargo::core::compiler::TargetInfo;
 use cargo::core::resolver::CliFeatures;
-use cargo::util::command_prelude::CompileMode;
 
 use crate::config::Config;
 

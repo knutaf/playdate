@@ -111,9 +111,9 @@ pub mod format {
 
 	use cargo::core::Edition;
 	use cargo::core::PackageId;
-	use cargo::util::command_prelude::CompileMode;
 	use cargo::core::compiler::CompileKind;
 	use cargo::core::compiler::CrateType;
+	use cargo::core::compiler::CompileMode;
 
 	pub use super::super::format::*;
 
